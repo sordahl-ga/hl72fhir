@@ -1,14 +1,14 @@
 module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
     Array.prototype.isArray = true;
     function safeaccess(v) {
         if (v) {
             if (v.isArray)
-                return v[0].toString();
+                return v[0];
             return v.toString();
         }
         return "";
     }
+    context.log('ADT2FHIR Trigger Fired');
     if (req.query.id) {
         var msg = JSON.parse(context.req.rawBody);
         var instance = msg['MSH']['MSH.3'].toString();
